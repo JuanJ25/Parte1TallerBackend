@@ -1,4 +1,4 @@
-package src.main.java.artifactId;
+package src.main.java.culturemedia;
 
 public class ApplicationRunner {
 }
