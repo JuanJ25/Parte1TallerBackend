@@ -1,4 +1,4 @@
-package src.main.java.culturemedia;
+package culturemedia;
 
 public class ApplicationRunner {
 }
