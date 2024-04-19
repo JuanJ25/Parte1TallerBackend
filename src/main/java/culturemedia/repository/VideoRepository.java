@@ -8,5 +8,9 @@ public interface VideoRepository {
     Video save(Video video);
     List<Video> findByTitle(String title);
     List<Video> findByDuration(Double fromDuration, Double toDuration);
+
+    List<Video> find(String title);
+
+    List<Video> find(Double fromDuration, Double toDuration);
 }
 
