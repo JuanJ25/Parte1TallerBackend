@@ -23,20 +23,11 @@ public class VideoRepositoryImpl implements VideoRepository {
     }
 
     @Override
-    public List<Video> findByTitle(String title) {
-        return null;
-    }
-
-    @Override
-    public List<Video> findByDuration(Double fromDuration, Double toDuration) {
-        return null;
-    }
-
-    @Override
     public List<Video> find(String title) {
-        List<Video> filteredVideos = null;
+        List<Video> filteredVideos = new ArrayList<>();
         for ( Video video : videos ) {
-            if(title.equals( video.tittle() )){
+            // if(title.equals( video.tittle() )){
+            if( video.tittle().contains(title)){
                 if(filteredVideos == null){
                     filteredVideos = new ArrayList<Video>();
                 }
@@ -49,12 +40,16 @@ public class VideoRepositoryImpl implements VideoRepository {
     @Override
     public List<Video> find(Double fromDuration, Double toDuration) {
         List<Video> filteredVideos = new ArrayList<Video>();
-        for ( Video video : videos ) {
-            if(video.duration()> fromDuration && video.duration()< toDuration){
+        for (Video video : videos) {
+            if (video.duration() >= fromDuration && video.duration() <= toDuration) {
                 filteredVideos.add(video);
             }
         }
         return filteredVideos;
     }
+
 }
+
+
+
 
