@@ -4,7 +4,10 @@ import culturemedia.model.VideoReproduction;
 import culturemedia.repository.VideoRepository;
 import culturemedia.repository.ViewsRepository;
 import culturemedia.service.CultureMediaService;
-
+import culturemedia.exception.VideoNotFoundException;
+import culturemedia.exception.CultureMediaException;
+import culturemedia.exception.DurationNotValidException;
+import java.text.MessageFormat;
 import java.util.List;
 
 public class CultureMediaServiceImpl implements CultureMediaService {
@@ -16,8 +19,35 @@ public class CultureMediaServiceImpl implements CultureMediaService {
         this.viewsRepository = viewsRepository;
     }
 
-    public List<Video> findAll() {
-        return videoRepository.findAll();
+    public List <Video> find(String title) throws VideoNotFoundException{
+        var video =videoRepository.find(title);
+        try {
+            if (video.isEmpty()) {
+                throw new VideoNotFoundException();
+            }
+            return video;
+        }catch(Exception e){
+            throw new VideoNotFoundException(MessageFormat.format("video not found with the tittle: {0}, Error: {1} " + title,e));
+        }
+    }
+
+    public List <Video> find(Double fromDuration, Double toDuration)throws VideoNotFoundException {
+        var video = videoRepository.find(fromDuration, toDuration);
+        try {
+            if (video.isEmpty()) {
+                throw new VideoNotFoundException();
+            }
+            return video;
+        }catch(Exception e) {
+            throw new VideoNotFoundException();
+        }
+    }
+    public List<Video> findAll() throws VideoNotFoundException {
+        var videos = videoRepository.findAll();
+        if (videos.isEmpty()) {
+            throw new VideoNotFoundException("No videos found.");
+        }
+        return videos;
     }
 
     public Video save(Video video)  {
