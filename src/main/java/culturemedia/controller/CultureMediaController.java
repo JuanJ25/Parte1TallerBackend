@@ -1,28 +1,20 @@
 package culturemedia.controller;
+import culturemedia.exception.VideoNotFoundException;
+import culturemedia.model.Video;
+import culturemedia.service.CultureMediaService;
+import java.util.List;
 
 public class CultureMediaController {
-    import java.util.*;
 
-import culturoteca.exception.VideoNotFoundException;
-import culturoteca.model.Video;
-import culturoteca.service.impl.CultureMediaServiceImpl;
+    private final CultureMediaService cultureMediaService;
 
-    public class CultureMediaController {
+    public CultureMediaController(CultureMediaService cultureMediaService) {
+        this.cultureMediaService = cultureMediaService;
+    }
 
-        private final CultureMediaServiceImpl cultureMediaService;
-
-
-        public CultureMediaController(CultureMediaServiceImpl cultureMediaService) {
-            this.cultureMediaService = cultureMediaService;
-        }
-
-
-        public List<Video> find_allVideos() throws VideoNotFoundException {
-            List<Video> videos = null;
-            videos = cultureMediaService.findAll();
-            return videos;
-        }
-
-
+    public List<Video> findAll() throws VideoNotFoundException {
+        List<Video> videos = null;
+        videos = cultureMediaService.findAll();
+        return videos;
     }
 }
