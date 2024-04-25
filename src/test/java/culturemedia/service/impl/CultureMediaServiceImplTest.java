@@ -60,7 +60,7 @@ public class CultureMediaServiceImplTest {
     void when_FindByDuration_does_not_find_any_video_an_VideoNotFoundException_should_be_thrown_successfully() throws VideoNotFoundException {
         assertThrows(VideoNotFoundException.class, () -> {
             cultureMediaService.find(1.5, 2.0);
-       });
+        });
     }
 
     @Test
@@ -71,4 +71,3 @@ public class CultureMediaServiceImplTest {
         assertEquals(1, videos.size());
     }
 }
-
