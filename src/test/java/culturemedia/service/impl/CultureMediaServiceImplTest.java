@@ -59,12 +59,12 @@ public class CultureMediaServiceImplTest {
 
     @Test
     void when_FindByTittle_videos_should_be_returned_successfully() throws VideoNotFoundException {
-        Video video = new Video("01", "Duna", "Pelicula", 3.5);
+        Video video = new Video("01", "Luna", "Pelicula", 3.5);
         List<Video> videos = new ArrayList<>();
         videos.add(video);
-        when(mockVideoRepository.find("Duna")).thenReturn(videos);
+        when(mockVideoRepository.find("Luna")).thenReturn(videos);
         cultureMediaService.save(video);
-        List<Video> foundVideos = cultureMediaService.find("Duna");
+        List<Video> foundVideos = cultureMediaService.find("Luna");
         assertEquals(1, foundVideos.size());
     }
 
@@ -78,7 +78,7 @@ public class CultureMediaServiceImplTest {
 
     @Test
     void when_FindByDuration_videos_should_be_returned_successfully() throws VideoNotFoundException {
-        Video video = new Video("01", "Duna", "Pelicula", 3.5);
+        Video video = new Video("01", "Luna", "Pelicula", 3.5);
         List<Video> videos = new ArrayList<>();
         videos.add(video);
         when(mockVideoRepository.find(2.5, 3.5)).thenReturn(videos);
