@@ -1,6 +1,9 @@
 package culturemedia.model;
 
-public record Video(String code, String tittle, String description, Double duration) {
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+public record Video(@NotNull String code, @Size(min = 3) String tittle, String description, Double duration) {
 }
 
 
